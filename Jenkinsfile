@@ -25,7 +25,7 @@ pipeline {
         steps {
           script {
               sshagent(['test']) {
-                sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 10.0.2.129 uname -a'
+                sh 'ssh -o StrictHostKeyChecking=no ubuntu@10.0.2.129'
               }
           }
         }
