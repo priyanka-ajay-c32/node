@@ -27,7 +27,7 @@ pipeline {
     post {
         always {
             deleteDir()
-            sh "sudo docker rmi 416827206337.dkr.ecr.us-east-1.amazonaws.com/upg-app-1:\${BUILD_NUMBER}"
+            sh "docker rmi 416827206337.dkr.ecr.us-east-1.amazonaws.com/upg-app-1:\${BUILD_NUMBER}"
             }
         }
 }
