@@ -24,8 +24,8 @@ pipeline {
       stage('Docker Run') {
         steps {
           script {
-            sshagent(credentials : ['aws_ec2']) {
-              sh 'ssh -o StrictHostKeyChecking=no -i assignment-c7key.pem ubuntu@10.0.2.129'
+            sshagent(credentials : ['myKey.pem']) {
+              sh 'ssh -o StrictHostKeyChecking=no -i mKey.pem ubuntu@10.0.2.129'
               sh 'ls -l'
             }
           }
