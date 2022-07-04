@@ -24,7 +24,7 @@ pipeline {
       stage('Docker Run') {
         steps {
           script {
-              sshagent(['myKey.pem']) {
+              sshagent(['test']) {
                 sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 10.0.2.129 uname -a'
                 sh 'ls -l'
             }
