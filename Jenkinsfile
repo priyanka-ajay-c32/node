@@ -25,7 +25,7 @@ pipeline {
         steps {
           script {
             sshagent(credentials : ['myKey.pem']) {
-              sh 'ssh -o StrictHostKeyChecking=no -i myKey.pem ubuntu@10.0.2.129'
+              sh 'ssh -o StrictHostKeyChecking=no ubuntu@10.0.2.129'
               sh 'ls -l'
             }
           }
