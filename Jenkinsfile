@@ -7,6 +7,7 @@ pipeline {
     }
     environment {
             AWS_DEFAULT_REGION = 'us-east-1'
+            SSH_KEY_FILE = credentials('test')
     }
     stages {
       stage('Git Checkout') {
@@ -23,11 +24,12 @@ pipeline {
       }*/
       stage('Docker Run') {
         steps {
-          script {
+            sh "ssh -i $SSH_KEY_FILE -o StrictHostKeyChecking=no ubuntu@172.31.29.27"
+          /*script {
               sshagent(['test']) {
                 sh 'ssh -o StrictHostKeyChecking=no ubuntu@10.0.2.129'
               }
-          }
+          }*/
         }
       }
     }
