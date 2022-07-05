@@ -24,14 +24,19 @@ pipeline {
       }*/
       stage('Docker Run') {
         steps {
-            sh "ssh -i $SSH_KEY_FILE -o StrictHostKeyChecking=no ubuntu@10.0.2.139 '
+            /*sh "ssh -i $SSH_KEY_FILE -o StrictHostKeyChecking=no ubuntu@10.0.2.139 '
             ls -al '
-            "
-          /*script {
-              sshagent(['test']) {
-                sh 'ssh -o StrictHostKeyChecking=no ubuntu@'
+            "*/
+          script {
+              sshagent(credentials : ['test']) {
+                sh "echo pwd"
+                sh 'ssh -t -t ubuntu@10.0.2.139 -o StrictHostKeyChecking=no'
+                sh "echo pwd"
+                sh 'sudo -i -u root'
+                sh 'cd /opt/docker/web'
+                sh 'echo pwd'
               }
-          }*/
+          }
         }
       }
     }
