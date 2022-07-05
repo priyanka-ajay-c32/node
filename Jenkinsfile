@@ -28,6 +28,11 @@ pipeline {
             sh """
             ssh -i $SSH_KEY_FILE -o StrictHostKeyChecking=no ubuntu@10.0.2.139 << EOF
             pwd
+            cd /home/ubuntu/node-app
+            docker pull 416827206337.dkr.ecr.us-east-1.amazonaws.com/upg-app-1:\${BUILD_NUMBER}
+            docker stop upg-app-1
+            docker rm upg-app-1
+            docker run -itd -p 8081:8081 416827206337.dkr.ecr.us-east-1.amazonaws.com/upg-app-1:\${BUILD_NUMBER}
             exit 0
             << EOF
             """
