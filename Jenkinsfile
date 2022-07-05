@@ -24,10 +24,10 @@ pipeline {
       }*/
       stage('Docker Run') {
         steps {
-            sh "ssh -i $SSH_KEY_FILE -o StrictHostKeyChecking=no ubuntu@172.31.29.27"
+            sh "ssh -i $SSH_KEY_FILE -o StrictHostKeyChecking=no ubuntu@10.0.2.139"
           /*script {
               sshagent(['test']) {
-                sh 'ssh -o StrictHostKeyChecking=no ubuntu@10.0.2.129'
+                sh 'ssh -o StrictHostKeyChecking=no ubuntu@'
               }
           }*/
         }
