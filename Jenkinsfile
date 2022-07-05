@@ -28,13 +28,12 @@ pipeline {
             ls -al '
             "*/
           script {
-              sshagent(credentials : ['test']) {
-                sh "echo pwd"
-                sh 'ssh -t -t ubuntu@10.0.2.139 -o StrictHostKeyChecking=no'
-                sh "echo pwd"
-                sh 'sudo -i -u root'
-                sh 'cd /opt/docker/web'
-                sh 'echo pwd'
+                    sh """
+                    ssh -i $SSH_KEY_FILE -o StrictHostKeyChecking=no ubuntu@10.0.2.139 << EOF
+                    pwd
+                    exit 0
+                    << EOF
+                    """
               }
           }
         }
